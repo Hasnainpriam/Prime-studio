@@ -53,5 +53,4 @@ const router=  createBrowserRouter([
     </div>
   );
 }
-
 export default App;
