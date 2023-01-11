@@ -50,7 +50,6 @@ const router=  createBrowserRouter([
     <div className="App">
       <RouterProvider router={router}></RouterProvider>
       <ToastContainer />
-
     </div>
   );
 }
