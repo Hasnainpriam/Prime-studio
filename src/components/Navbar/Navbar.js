@@ -1,8 +1,14 @@
+import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/icons8-camera-66.png'
+import { AuthContext } from '../../userContext/userContext';
 
 const Navbar = () => {
-   
+    const {logOut,user}=useContext(AuthContext);
+    
+    const handleLogout = () => {
+        logOut()
+    }
 
     return (
         <header className="flex justify-between items-center py-8 md:py-8  max-w-screen-2xl px-4 md:px-10 mx-auto">
@@ -20,7 +26,18 @@ const Navbar = () => {
                 <Link to='/blog' className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100">Blogs</Link>
                 <Link to='/about' className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100">About</Link>
 
-               
+                {
+                    user ? 
+                        <Link onClick={handleLogout} to='/login' className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100">
+                        <span>
+                           {( 
+                            user?.email?.split("@")[0].toUpperCase()
+                            
+                        )},
+                        </span>                      Logout</Link>
+                        :
+                        <Link to='/login' className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100">Login</Link>
+                }
             </nav>
 
             <Link to='/pricing' className="hidden lg:inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Hire Now</Link>
